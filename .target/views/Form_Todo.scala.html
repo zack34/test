@@ -1,0 +1,37 @@
+@(todos: List[Task], message: String, todoForm: Form[Task])
+
+@main("Todo_list") {
+
+    <h1>@message</h1>
+        <h2>Nouvelle Todo (tache) : </h2>    
+        @helper.form(action = routes.Application.submitTodo()) {
+        @helper.inputText(todoForm("Label"))
+        <input type="submit" class="btn primary" value="todo !!!">
+        
+        }
+             
+        <h2>Messages</h2>
+        
+        <table class="table table-striped">
+        
+                <tr>
+                        <td>nb Tweet</td>
+                        <td>ID</td>
+                        <td>Date</td>
+                        <td>Nom de la tache</td>
+                </tr>
+                
+        @for((todo, i) <- todos.zipWithIndex.reverse) {
+                <tr>
+                        <td>@i</td>
+                        <td>@todo.id</td>
+                        <td>@todo.date</td>
+                        <td>@todo.Label</td>
+                      
+                </tr>
+        }
+        </table>
+        
+        Il y a au total @todos.size taches en total.
+
+}
